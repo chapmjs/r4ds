@@ -1,0 +1,55 @@
+---
+title: "Chapter 5 Exercises"
+output: html_document
+---
+
+Load libraries
+```{r}
+library(nycflights13)
+library(tidyverse)
+
+
+```
+
+```{r}
+flights
+```
+
+```{r}
+filter(flights, month == 1, day == 1)
+```
+
+```{r}
+(jan1 <- filter(flights, month == 1, day == 1))
+```
+
+```{r eval=FALSE }
+filter(flights, month = 1)
+
+
+# calculations are precise
+sqrt(2) ^ 2 == 2
+
+1 / 49 * 49 == 1
+
+# so when comparing numebrs, use near()
+
+near(sqrt(2)^2, 2)
+
+near(1 / 49 * 49, 1)
+
+
+```
+
+![Complete set of Boolean operations.](C:/Users/John.Chapman/Documents/R/r4ds/exercises/img/transform-logical.png)
+
+
+
+How many flights
+```{r}
+filter(flights, month == 11 | month == 12)
+nov_dec <- filter(flights, month %in% c(11,12))
+```
+
+
+
