@@ -50,7 +50,7 @@ near(1 / 49 * 49, 1)
 ```
 ## 5.2.2 Logical operators
 
-![Complete set of Boolean operations.](C:/Users/John.Chapman/Documents/R/r4ds/exercises/img/transform-logical.png)
+![Complete set of Boolean operations.](./img/transform-logical.png)
 
 
 
