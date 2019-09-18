@@ -3,6 +3,7 @@ title: "Chapter 5 Exercises"
 output: html_document
 ---
 
+## 5.1 Introduction
 Load libraries
 ```{r}
 library(nycflights13)
@@ -11,18 +12,25 @@ library(tidyverse)
 
 ```
 
+see the data
 ```{r}
 flights
 ```
 
+## 5.2 Filter rows with filter
+
+filter for flights on month == 1, day == 1
 ```{r}
 filter(flights, month == 1, day == 1)
 ```
 
+filter for flights (on month ==1, day == 1) and save to new object
 ```{r}
 (jan1 <- filter(flights, month == 1, day == 1))
 ```
 
+
+Common Error messages
 ```{r eval=FALSE }
 filter(flights, month = 1)
 
@@ -40,16 +48,24 @@ near(1 / 49 * 49, 1)
 
 
 ```
+## 5.2.2 Logical operators
 
 ![Complete set of Boolean operations.](C:/Users/John.Chapman/Documents/R/r4ds/exercises/img/transform-logical.png)
 
 
 
-How many flights
+How many flights left from NYC in Nov and Dec?
 ```{r}
 filter(flights, month == 11 | month == 12)
 nov_dec <- filter(flights, month %in% c(11,12))
 ```
 
+
+How many flights were NOT delayed (on arrival or departure) by more than two hours?
+```{r}
+filter(flights, !(arr_delay > 120 | dep_delay > 120))
+# or
+filter(flights, arr_delay <= 120, dep_delay <= 120)
+```
 
 
