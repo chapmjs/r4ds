@@ -1,0 +1,20 @@
+---
+title: "Chapter 5 Application Exercises"
+author: "John Chapman"
+date: "9/20/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Application Exercises
+What about app ex with the flights data?  Or more significantly, what is the question that can be answered with the skills/functions of chapter 5 including filtering, arrange, select, mutate, summarize, group by?
+
+Maybe what I'm after here is using data to inform or make a decision.  What is the decision that should be made using this data?  Could this be the question?  In other words, what if you (the student) are a data analyst for a marketing consulting firm.  You have been tasked to look at this data to identify what differentiates United Airlines from American Airlines.  What are the competitive threats or opportunities that this data could identify?  How else could you use this data to improve or grow an airlines' business?
+
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

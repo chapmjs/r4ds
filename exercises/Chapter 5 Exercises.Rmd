@@ -1,3 +1,16 @@
+---
+title: "Chapter 5 Exercises"
+author: "jsc"
+date: "9/20/2019"
+output: html_document
+---
+# Exercises 5.2.1
+1. All flights that had an arrival delay of two or more hours
+```{r }
+library(nycflights13)
+filter (flights, arr_delay <= 120)
+```
+
 # Chapter 5 Exercises
 #
 library(nycflights13)
@@ -44,3 +57,25 @@ filter(flights, arr_delay > 120, dep_delay <= 0)
 filter(flights, dep_delay >= 60 & dep_delay - arr_delay > 30)
 # total rows = 1844
 
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
