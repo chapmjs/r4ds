@@ -24,3 +24,11 @@ by_day_sum <- by_day_sum %>%
 
 ggplot(by_day_sum) +
   geom_line(mapping = aes(x = year_day, y = delay))
+
+
+by_airport <- flights %>%
+  group_by(origin) %>%
+  summarize (n = n())
+
+
+
