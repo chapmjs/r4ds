@@ -8,8 +8,28 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## Application Exercises
+1. Your friend, Enrique, knows you have taken an Introduction to Data Science course at SVU. He would like your help to use data from the US Department of Labor to identify the best occupation for him based on salary, occupational growth, and required entry education.  He has indicated to you that he would like to make more than $65k per year in median salary, and is expecting to finish a bachelor's degree, but could possibly pursue a masters degree.  And, he would like to select an occupation with an occupational growth rate greater than 5%.  With these inputs, identify which of the following would you recommend as the best occupation for Enrique?
+
+A) 
+
+
+
+```{r}
+library(readxl)
+occupation <- read_excel("C:/Users/John.Chapman/Downloads/occupation.xlsx", 
+    sheet = "Table 1.7", skip = 1)
+View(occupation)
+
+var_names <- c("title", "code", "line_type", "emp18", "emp28", "empchnum", "empchper", "selfempper", "openings", "medannwage", "entryed", "workexp", "onjobtraining")
+
+names(occupation) <- var_names
+
+
+
+```
+
+
 What about app ex with the flights data?  Or more significantly, what is the question that can be answered with the skills/functions of chapter 5 including filtering, arrange, select, mutate, summarize, group by?
 
 Maybe what I'm after here is using data to inform or make a decision.  What is the decision that should be made using this data?  Could this be the question?  In other words, what if you (the student) are a data analyst for a marketing consulting firm.  You have been tasked to look at this data to identify what differentiates United Airlines from American Airlines.  What are the competitive threats or opportunities that this data could identify?  How else could you use this data to improve or grow an airlines' business?
