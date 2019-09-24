@@ -17,14 +17,24 @@ A)
 
 ```{r}
 library(readxl)
+library(tidyverse)
 occupation <- read_excel("C:/Users/John.Chapman/Downloads/occupation.xlsx", 
     sheet = "Table 1.7", skip = 1)
 View(occupation)
+save(occupation, file = "occupation.RData")
+occupation <- load("occupation.RData")
 
-var_names <- c("title", "code", "line_type", "emp18", "emp28", "empchnum", "empchper", "selfempper", "openings", "medannwage", "entryed", "workexp", "onjobtraining")
+var_names <- c("title", "code", "line_type", "emp18", "emp28", "empchnum", "empchper", "selfempper", "openings", "medannwage", "entryed", "workexp", "onthejob_train")
 
 names(occupation) <- var_names
 
+## filter for jobs with salary > 65
+
+salarygt65 <- occupation %>%
+  filter(medannwage > 65000 & entryed == "Bachelor's degree" & empchper >= 5) %>%
+  arrange(desc(medannwage))
+
+View(salarygt65)
 
 
 ```
