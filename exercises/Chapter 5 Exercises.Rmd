@@ -89,5 +89,32 @@ total rows = 9373
 filter(flights, is.na(dep_time))
 ```
 
+# 5.3.2 Sort flights to find the most delayed flights. 
+```{r echo=FALSE}
+# flights with the largest delay
+arrange(flights, desc(dep_delay))
+```
+
+# Find the flights that left earliest.
+```{r echo=FALSE} 
+# flights with the shortest delay or that left early
+arrange(flights, dep_delay)
+```
+
+# 5.3.3 Sort flights to find the fastest flights (highest average ground speed, which can be calculated from the distance and duration of the flight.
+```{r}
+# The fastest flight is the one with the average ground speed, which can be calculated from the distance and duration of the flight. Since ground speed is not included in the data, first create new column in flights containing ground speed in miles per hour.
+
+fastest_flights <- mutate(flights, mph = distance / air_time * 60)
+fastest_flights <- select(
+  fastest_flights, mph, distance, air_time,
+  flight, origin, dest, year, month, day
+)
+
+# Now sort the flights by mph to find the fastest flights
+
+head(arrange(fastest_flights, desc(mph)))
+
+```
 
 
