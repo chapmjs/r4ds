@@ -9,6 +9,7 @@ library(nycflights13)
 library(tidyverse)
 
 ```
+# [http://bit.ly/r4dsch5ex](http://bit.ly/r4dsch5ex)
 # Exercises 5.2.1
 
 ## 1. all flights with an arrival delay of 120 or more
@@ -102,7 +103,7 @@ arrange(flights, dep_delay)
 ```
 
 # 5.3.3 Sort flights to find the fastest flights (highest average ground speed, which can be calculated from the distance and duration of the flight.
-```{r}
+```{r echo = FALSE}
 # The fastest flight is the one with the average ground speed, which can be calculated from the distance and duration of the flight. Since ground speed is not included in the data, first create new column in flights containing ground speed in miles per hour.
 
 fastest_flights <- mutate(flights, mph = distance / air_time * 60)
@@ -117,4 +118,27 @@ head(arrange(fastest_flights, desc(mph)))
 
 ```
 
+
+# 5.3.4 Which flights traveled the longest distance? 
+```{r echo=FALSE}
+arrange(flights, desc(distance))
+```
+
+## Which traveled the shortest distance?
+```{r echo=FALSE}
+arrange(flights, distance)
+```
+
+
+## Which flights traveled the longest time?
+```{r echo = FALSE}
+# The terms “longest” and “shortest” could also refer to the time of the flight instead of the distance. Now the longest and shortest flights by can be found by sorting by the air_time column. The longest flights by airtime are the following.
+
+arrange(flights, desc(air_time))
+```
+
+## Which flights traveled the shortest time?
+```{r echo=FALSE}
+arrange(flights, air_time)
+```
 
