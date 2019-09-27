@@ -5,7 +5,7 @@
 _main.rds
 _book
 *.md
-*.html
+# *.html
 !ga_script.html
 search_index.json
 libs
