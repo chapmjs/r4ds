@@ -2,6 +2,7 @@
 title: "Chapter 5 Exercises"
 author: "J.Chapman"
 date: "9/20/2019"
+runtime: shiny
 output: html_document
 ---
 ```{r setup, include=FALSE}
