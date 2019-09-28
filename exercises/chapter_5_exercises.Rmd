@@ -1,0 +1,145 @@
+---
+title: "Chapter 5 Exercises"
+author: "J.Chapman"
+date: "9/20/2019"
+runtime: shiny
+output: html_document
+---
+```{r setup, include=FALSE}
+library(nycflights13)
+library(tidyverse)
+
+```
+# [http://bit.ly/r4dsch5ex](http://bit.ly/r4dsch5ex)
+# Exercises 5.2.1
+
+## 1. all flights with an arrival delay of 120 or more
+
+```{r echo=FALSE}
+filter(flights, arr_delay >= 120)
+```
+total = 10,200 flights (rows)
+
+## 2. all flights that flew to Houston (IAH or HOU)
+```{r echo=FALSE}
+filter(flights, dest == "IAH" | dest == "HOU")
+
+```
+total rows = 9,313
+
+## 3. all flights operated by United, American, or Delta airlines
+DL = Delta, AA = American, UA = United
+```{r echo=FALSE}
+filter(flights, carrier %in% c("UA", "AA", "DL"))
+
+```
+total rows = 139,504 (total is 336,776), so 139504/336776 = 41.42%
+
+## 4. all flights that departed in the summer (july, aug, sep)
+```{r echo=FALSE}
+filter(flights, month %in% c("7","8","9"))
+# or
+# filter(flights, month >=7, month <=9)
+# total rows = 86,326
+# or
+# filter(flights, month %in% 7:9)
+# total rows = 86,326
+# or
+# (less efficient, more code)
+# filter(flights, month == 7 | month == 8 | month == 9)
+# total rows = 86,326
+
+```
+total rows = 86,326
+
+## 5. all flights that arrived more than two hours late, but didn't leave late
+```{r echo=FALSE}
+filter(flights, dep_delay <= 0 & arr_delay > 120)
+# or
+# filter(flights, arr_delay > 120, dep_delay <= 0)
+# total rows = 29, or 29/336776 = .009% of flights
+
+```
+total rows = 29
+
+
+## 6. all flights delayed by at least an hour, but made up over 30 minutes in flight
+```{r echo=FALSE}
+filter(flights, dep_delay >= 60 & dep_delay - arr_delay > 30)
+
+```
+total rows = 1844
+
+## 7. Flights that departed between midnight and 6 a.m.
+```{r echo=FALSE}
+# Finding flights that departed between midnight and 6 a.m. is complicated by the way in which times are represented in the data.
+# In dep_time, midnight is represented by 2400, not 0. You can verify this by checking the minimum and maximum of dep_time.
+# 
+# summary(flights$dep_time)
+# #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+# #>       1     907    1401    1349    1744    2400    8255
+# This is an example of why it is always good to check the summary statistics of your data. Unfortunately, this means we cannot simply check that dep_time < 600, because we also have to consider the special case of midnight.
+
+filter(flights, dep_time <= 600 | dep_time == 2400)
+
+```
+total rows = 9373
+
+# 5.2.3 How many flights have a missing dep_time? What other variables are missing? What might these rows represent?
+```{r echo=FALSE}
+# Find the rows of flights with a missing departure time (dep_time) using the is.na() function.
+filter(flights, is.na(dep_time))
+```
+
+# 5.3.2 Sort flights to find the most delayed flights. 
+```{r echo=FALSE}
+# flights with the largest delay
+arrange(flights, desc(dep_delay))
+```
+
+# Find the flights that left earliest.
+```{r echo=FALSE} 
+# flights with the shortest delay or that left early
+arrange(flights, dep_delay)
+```
+
+# 5.3.3 Sort flights to find the fastest flights (highest average ground speed, which can be calculated from the distance and duration of the flight.
+```{r echo = FALSE}
+# The fastest flight is the one with the average ground speed, which can be calculated from the distance and duration of the flight. Since ground speed is not included in the data, first create new column in flights containing ground speed in miles per hour.
+
+fastest_flights <- mutate(flights, mph = distance / air_time * 60)
+fastest_flights <- select(
+  fastest_flights, mph, distance, air_time,
+  flight, origin, dest, year, month, day
+)
+
+# Now sort the flights by mph to find the fastest flights
+
+head(arrange(fastest_flights, desc(mph)))
+
+```
+
+
+# 5.3.4 Which flights traveled the longest distance? 
+```{r echo=FALSE}
+arrange(flights, desc(distance))
+```
+
+## Which traveled the shortest distance?
+```{r echo=FALSE}
+arrange(flights, distance)
+```
+
+
+## Which flights traveled the longest time?
+```{r echo = FALSE}
+# The terms “longest” and “shortest” could also refer to the time of the flight instead of the distance. Now the longest and shortest flights by can be found by sorting by the air_time column. The longest flights by airtime are the following.
+
+arrange(flights, desc(air_time))
+```
+
+## Which flights traveled the shortest time?
+```{r echo=FALSE}
+arrange(flights, air_time)
+```
+
